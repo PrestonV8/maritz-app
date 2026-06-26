@@ -7,7 +7,7 @@
     <RootNamespace>maritz_app.Server</RootNamespace>
     <SpaRoot>..\maritz-app.client</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
-    <SpaProxyServerUrl>https://localhost:65359</SpaProxyServerUrl>
+    <SpaProxyServerUrl>http://localhost:5173</SpaProxyServerUrl>
   </PropertyGroup>
 
   <ItemGroup>

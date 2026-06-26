@@ -7,8 +7,7 @@ function App() {
     const [error, setError] = useState(null)
 
     function fetchEmployees() {
-        setLoading(true)
-        fetch('/api/employees')
+        fetch('https://localhost:7103/api/employees')
             .then(res => {
                 if (!res.ok) throw new Error(`Server responded ${res.status}`)
                 return res.json()
