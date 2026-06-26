@@ -6,10 +6,6 @@ function App() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
-    useEffect(() => {
-        fetchEmployees()
-    }, [])
-
     function fetchEmployees() {
         setLoading(true)
         fetch('/api/employees')
@@ -25,24 +21,27 @@ function App() {
             .finally(() => setLoading(false))
     }
 
-    function awardPoints(id)
-    {
-        fetch(`/api/employees/${id}/award`,
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ amount: 10, reason: 'Great work'})
+    function awardPoints(id) {
+        fetch(`/api/employees/${id}/award`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ amount: 10, reason: 'Great work' })
+        })
+            .then(res => {
+                if (!res.ok) throw new Error(`Award failed: ${res.status}`)
+                return res.json()
             })
-            .then(response => {
-                if (!response.ok) throw new Error(`Award failed: ${response.status}`)
-                return response.json()
-            })
-            .then(data => {
-                setEmployees(previous => previous.map(e => (e.id === updatedEmployee.id ? updatedEmployee : e))
+            .then(updatedEmployee => {
+                setEmployees(prev =>
+                    prev.map(e => (e.id === updatedEmployee.id ? updatedEmployee : e))
                 )
             })
-            .catch(error => setError(error.message))
+            .catch(err => setError(err.message))
     }
+
+    useEffect(() => {
+        fetchEmployees()
+    }, [])
 
     if (loading) return <p>Loading employees...</p>
     if (error) return <p>Error: {error}</p>
