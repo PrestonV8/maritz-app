@@ -1,0 +1,6 @@
+@maritz_app.Server_HostAddress = http://localhost:5029
+
+GET {{maritz_app.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
