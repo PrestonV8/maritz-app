@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 //import './App.css'
-import './Index.css'
+import './index.css'
 
 function App() {
     const [employees, setEmployees] = useState([])
@@ -22,7 +22,7 @@ function App() {
     }
 
     function awardPoints(id) {
-        fetch(`/api/employees/${id}/award`, {
+        fetch(`https://localhost:7103/api/employees/${id}/award`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ amount: 10, reason: 'Great work' })
