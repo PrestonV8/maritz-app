@@ -7,6 +7,7 @@ function App() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
+    // Retrieve the collection of employees from the API
     function fetchEmployees() {
         fetch('https://localhost:7103/api/employees')
             .then(res => {
@@ -21,6 +22,7 @@ function App() {
             .finally(() => setLoading(false))
     }
 
+    // Award points to an employee by calling the API
     function awardPoints(id) {
         fetch(`https://localhost:7103/api/employees/${id}/award`, {
             method: 'POST',
