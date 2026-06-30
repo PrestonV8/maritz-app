@@ -15,6 +15,9 @@ namespace maritz_app.Server.Controllers
             _context = context;
         }
 
+        /*
+         * Task to retrieve all the employees from the database
+         */
         [HttpGet]
         public async Task<ActionResult<IEnumerable<EmployeeModel>>> GetEmployees() 
         {
@@ -22,6 +25,9 @@ namespace maritz_app.Server.Controllers
             return Ok(employees);
         }
 
+        /*
+         * Task to retrieve a specific employee by their ID from the database
+         */
         [HttpGet("{id}")]
         public async Task<ActionResult<EmployeeModel>> GetEmployee(int id)
         {
@@ -36,6 +42,9 @@ namespace maritz_app.Server.Controllers
             } 
         }
 
+        /*
+         * Task to add award points to a specific employee by their ID in the database
+         */
         [HttpPost("{id}/award")]
         public async Task<ActionResult<EmployeeModel>> AwardPoints(int id, AwardPointsRequest request)
         {
