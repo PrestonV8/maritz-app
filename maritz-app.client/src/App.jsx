@@ -41,6 +41,24 @@ function App() {
             .catch(err => setError(err.message))
     }
 
+    function redeemPoints(id) {
+        fetch(`https://localhost:7103/api/employees/${id}/redeem`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ amount: 10 })
+        })
+            .then(res => {
+                if (!res.ok) throw new Error(`Redeem failed: ${res.status}`)
+                return res.json()
+            })
+            .then(updatedEmployee => {
+                setEmployees(prev =>
+                    prev.map(e => (e.id === updatedEmployee.id ? updatedEmployee : e))
+                )
+            })
+            .catch(err => setError(err.message))
+    }
+
     useEffect(() => {
         fetchEmployees()
     }, [])
@@ -70,6 +88,9 @@ function App() {
                             <td>
                                 <button onClick={() => awardPoints(emp.id)}>
                                     +10 points
+                                </button>
+                                <button onClick={() => redeemPoints(emp.id)}>
+                                    -10 pts
                                 </button>
                             </td>
                         </tr>
