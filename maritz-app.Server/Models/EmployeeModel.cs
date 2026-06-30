@@ -1,4 +1,4 @@
-﻿namespace maritz_app.Server
+﻿namespace maritz_app.Server.Models
 {
     public class EmployeeModel
     {
