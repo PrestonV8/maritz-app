@@ -144,20 +144,23 @@ function App() {
                 </div>
             </div>
 
-            <div className="catalog-list">
-    {catalog.map(item => (
-        <label key={item.name} className={`catalog-item ${selected.has(item.name) ? 'catalog-item-checked' : ''}`}>
-            <input
-                type="checkbox"
-                checked={selected.has(item.name)}
-                onChange={() => toggleCatalogItem(item.name)}
-                className="catalog-checkbox"
-            />
-            <span className="catalog-name">{item.name}</span>
-            <span className="catalog-pts">{item.pts} pts</span>
-        </label>
-    ))}
-</div>
+            <aside className="catalog-sidebar">
+                <h2 className="catalog-title">Rewards catalog</h2>
+                <div className="catalog-list">
+                    {catalog.map(item => (
+                        <label key={item.name} className={`catalog-item ${selected.has(item.name) ? 'catalog-item-checked' : ''}`}>
+                            <input
+                                type="checkbox"
+                                checked={selected.has(item.name)}
+                                onChange={() => toggleCatalogItem(item.name)}
+                                className="catalog-checkbox"
+                            />
+                            <span className="catalog-name">{item.name}</span>
+                            <span className="catalog-pts">{item.pts} pts</span>
+                        </label>
+                    ))}
+                </div>
+            </aside>
 
         </div>
     )

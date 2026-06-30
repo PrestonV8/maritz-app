@@ -189,31 +189,31 @@ button {
 
 /* Catalog sidebar */
 .catalog-sidebar {
-    width: 220px;
+    width: 160px;
     flex-shrink: 0;
 }
 
 .catalog-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--text-heading);
-    margin: 0 0 14px;
+    margin: 0 0 10px;
 }
 
 .catalog-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .catalog-item {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 14px;
+    padding: 10px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     cursor: pointer;
 }
 
@@ -222,8 +222,8 @@ button {
 }
 
 .catalog-checkbox {
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
     cursor: pointer;
     accent-color: #6b70cc;
     flex-shrink: 0;
@@ -231,12 +231,12 @@ button {
 
 .catalog-name {
     flex: 1;
-    font-size: 14px;
+    font-size: 13px;
     color: var(--text);
 }
 
 .catalog-pts {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-muted);
     white-space: nowrap;
 }
