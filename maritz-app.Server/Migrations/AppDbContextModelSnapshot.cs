@@ -49,35 +49,35 @@ namespace maritz_app.Server.Migrations
                             Id = 1,
                             Department = "Sales",
                             Name = "Ana Reyes",
-                            Points = 120
+                            Points = 0
                         },
                         new
                         {
                             Id = 2,
                             Department = "Service",
                             Name = "Marcus Lee",
-                            Points = 80
+                            Points = 0
                         },
                         new
                         {
                             Id = 3,
                             Department = "Marketing",
                             Name = "Priya Shah",
-                            Points = 200
+                            Points = 0
                         },
                         new
                         {
                             Id = 4,
                             Department = "Engineering",
                             Name = "Kevin Dizon",
-                            Points = 150
+                            Points = 0
                         },
                         new
                         {
                             Id = 5,
                             Department = "Human Resources",
                             Name = "Matthew Garcia",
-                            Points = 90
+                            Points = 0
                         });
                 });
 

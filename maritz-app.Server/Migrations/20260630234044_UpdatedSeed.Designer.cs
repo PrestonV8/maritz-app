@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace maritz_app.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260629184634_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260630234044_UpdatedSeed")]
+    partial class UpdatedSeed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace maritz_app.Server.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("maritz_app.Server.EmployeeModel", b =>
+            modelBuilder.Entity("maritz_app.Server.Models.EmployeeModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,22 +52,59 @@ namespace maritz_app.Server.Migrations
                             Id = 1,
                             Department = "Sales",
                             Name = "Ana Reyes",
-                            Points = 120
+                            Points = 0
                         },
                         new
                         {
                             Id = 2,
                             Department = "Service",
                             Name = "Marcus Lee",
-                            Points = 80
+                            Points = 0
                         },
                         new
                         {
                             Id = 3,
                             Department = "Marketing",
                             Name = "Priya Shah",
-                            Points = 200
+                            Points = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Department = "Engineering",
+                            Name = "Kevin Dizon",
+                            Points = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Department = "Human Resources",
+                            Name = "Matthew Garcia",
+                            Points = 0
                         });
+                });
+
+            modelBuilder.Entity("maritz_app.Server.PointsTransaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PointsTransactions");
                 });
 #pragma warning restore 612, 618
         }

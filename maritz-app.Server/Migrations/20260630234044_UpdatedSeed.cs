@@ -7,11 +7,26 @@
 namespace maritz_app.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class AddPointsTransaction : Migration
+    public partial class UpdatedSeed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Department = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Points = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "PointsTransactions",
                 columns: table => new
@@ -32,8 +47,11 @@ namespace maritz_app.Server.Migrations
                 columns: new[] { "Id", "Department", "Name", "Points" },
                 values: new object[,]
                 {
-                    { 4, "Engineering", "Kevin Dizon", 150 },
-                    { 5, "Human Resources", "Matthew Garcia", 90 }
+                    { 1, "Sales", "Ana Reyes", 0 },
+                    { 2, "Service", "Marcus Lee", 0 },
+                    { 3, "Marketing", "Priya Shah", 0 },
+                    { 4, "Engineering", "Kevin Dizon", 0 },
+                    { 5, "Human Resources", "Matthew Garcia", 0 }
                 });
         }
 
@@ -41,17 +59,10 @@ namespace maritz_app.Server.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
                 name: "PointsTransactions");
-
-            migrationBuilder.DeleteData(
-                table: "Employees",
-                keyColumn: "Id",
-                keyValue: 4);
-
-            migrationBuilder.DeleteData(
-                table: "Employees",
-                keyColumn: "Id",
-                keyValue: 5);
         }
     }
 }
