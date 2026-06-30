@@ -1,13 +1,11 @@
 :root {
     --bg: #1e2260;
-    --bg-card: #272b6e;
-    --bg-card-2: #2f3478;
-    --border: #3d4290;
-    --text: #e8e8e8;
-    --text-muted: #9a9fc4;
+    --bg-card: #25297a;
+    --bg-card-2: #2c3186;
+    --border: #3a3f9e;
+    --text: #d0d4f0;
+    --text-muted: #8890c4;
     --text-heading: #ffffff;
-    --bronze-bg: #2a2a2a;
-    --bronze-text: #cccccc;
     --sans: 'Segoe UI', system-ui, Roboto, sans-serif;
     font: 16px/1.5 var(--sans);
     color: var(--text);
