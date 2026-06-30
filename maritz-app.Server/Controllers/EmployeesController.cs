@@ -56,6 +56,14 @@ namespace maritz_app.Server.Controllers
             }
 
             employee.Points += request.Amount;
+
+            _context.PointsTransactions.Add(new PointsTransaction
+            { 
+                EmployeeId = id,
+                Type = "award",
+                Amount = request.Amount
+            });
+
             await _context.SaveChangesAsync();
 
             return Ok(employee);
@@ -75,9 +83,32 @@ namespace maritz_app.Server.Controllers
             }
 
             employee.Points -= request.Amount;
+
+            _context.PointsTransactions.Add(new PointsTransaction
+            {
+                EmployeeId = id,
+                Type = "redeem",
+                Amount = request.Amount
+            });
+
             await _context.SaveChangesAsync();
 
             return Ok(employee);
+        }
+
+        [HttpGet("stats")]
+        public async Task<IActionResult> GetStats() 
+        {
+            var transactions = await _context.PointsTransactions.ToListAsync();
+
+            var stats = new
+            {
+                TotalEmployees = await _context.Employees.CountAsync(),
+                TotalAwarded = transactions.Where(t => t.Type == "award").Sum(t => t.Amount),
+                TotalRedeemed = transactions.Where(t => t.Type == "redeem").Sum(t => t.Amount)
+            };
+
+            return Ok(stats);
         }
     }
 }

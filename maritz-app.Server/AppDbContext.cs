@@ -8,6 +8,8 @@ public class AppDbContext : DbContext
 
     public DbSet<EmployeeModel> Employees => Set<EmployeeModel>();
 
+    public DbSet<PointsTransaction> PointsTransactions { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Carry over your three seed employees so a fresh DB isn't empty

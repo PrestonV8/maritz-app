@@ -8,6 +8,7 @@ function App() {
     const [error, setError] = useState(null)
     const [selected, setSelected] = useState(new Set())
     const [toast, setToast] = useState(null)
+    const [stats, setStats] = useState({ totalEmployss: 0, totalAwarded: 0, totalRedeemed:0 })
     const catalog = [
         { name: 'Coffee gift card', pts: 25 },
         { name: 'Branded shirt', pts: 50 },
@@ -46,6 +47,7 @@ function App() {
                 )
 
                 showToast(10, 'award')
+                fetchStats()
             })
             .catch(err => setError(err.message))
     }
@@ -70,6 +72,7 @@ function App() {
 
                 setSelected(new Set()) // clear the selected items
                 showToast(amount, 'redeem')
+                fetchStats()
             })
             .catch(err => setError(err.message))
     }
@@ -92,8 +95,17 @@ function App() {
         setTimeout(() => setToast(null), 2500)
     }
 
+    function fetchStats()
+    {
+        fetch('api/employees/stats')
+            .then(res => res.json())
+            .then(data =>  setStats(data))
+            .catch(err => console.error(err))
+    }
+
     useEffect(() => {
         fetchEmployees()
+        fetchStats()
     }, [])
 
     if (loading) return <p>Loading employees...</p>
@@ -121,6 +133,22 @@ function App() {
 
             <div>
                 <h1>Employee Rewards Dashboard</h1>
+
+                <div className="stats-row">
+                    <div className="stat-card">
+                        <div className="stat-label">Total employees</div>
+                        <div className="stat-value">{stats.totalEmployees}</div>
+                    </div>
+                    <div className="stat-card">
+                        <div className="stat-label">Points awarded</div>
+                        <div className="stat-value">{stats.totalAwarded}</div>
+                    </div>
+                    <div className="stat-card">
+                        <div className="stat-label">Points redeemed</div>
+                        <div className="stat-value">{stats.totalRedeemed}</div>
+                    </div>
+                </div>
+
                 <div className="table-card">
                     <table>
                         <thead>
