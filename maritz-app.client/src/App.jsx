@@ -9,7 +9,7 @@ function App() {
 
     // Retrieve the collection of employees from the API
     function fetchEmployees() {
-        fetch('https://localhost:7103/api/employees')
+        fetch('/api/employees')
             .then(res => {
                 if (!res.ok) throw new Error(`Server responded ${res.status}`)
                 return res.json()
