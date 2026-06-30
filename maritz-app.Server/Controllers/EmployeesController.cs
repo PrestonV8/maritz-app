@@ -59,5 +59,23 @@ namespace maritz_app.Server.Controllers
 
             return Ok(employee);
         }
+
+        /*
+         * Task to redeem award points for a specific employee by their ID in the database
+         */
+        [HttpPut("{id}/award")]
+        public async Task<ActionResult<EmployeeModel>> RedeemPoints(int id, RedeemPointsRequest request) 
+        {
+            var employee = await _context.Employees.FindAsync(id);
+            if (employee == null) 
+            {
+                return NotFound();
+            }
+
+            employee.Points -= request.Amount;
+            await _context.SaveChangesAsync();
+
+            return Ok(employee);
+        }
     }
 }

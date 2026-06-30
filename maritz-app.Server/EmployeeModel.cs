@@ -13,4 +13,10 @@
         public int Amount { get; set; }
         public string Reason { get; set; } = string.Empty;
     }
+
+    public class RedeemPointsRequest 
+    {
+        public int Amount { get; set; }
+        public string Reason { get; set; } = string.Empty;
+    }
 }
