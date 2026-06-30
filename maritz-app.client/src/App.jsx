@@ -7,6 +7,7 @@ function App() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [selected, setSelected] = useState(new Set())
+    const [toast, setToast] = useState(null)
     const catalog = [
         { name: 'Coffee gift card', pts: 25 },
         { name: 'Branded shirt', pts: 50 },
@@ -43,6 +44,8 @@ function App() {
                 setEmployees(prev =>
                     prev.map(e => (e.id === updatedEmployee.id ? updatedEmployee : e))
                 )
+
+                showToast(10, 'award')
             })
             .catch(err => setError(err.message))
     }
@@ -66,6 +69,7 @@ function App() {
                 )
 
                 setSelected(new Set()) // clear the selected items
+                showToast(amount, 'redeem')
             })
             .catch(err => setError(err.message))
     }
@@ -83,6 +87,11 @@ function App() {
         })
     }
 
+    function showToast(amount, type) {
+        setToast({ amount, type })
+        setTimeout(() => setToast(null), 2500)
+    }
+
     useEffect(() => {
         fetchEmployees()
     }, [])
@@ -96,6 +105,13 @@ function App() {
 
     return (
         <div className="content-row">
+
+            {toast && (
+                <div className="toast">
+                    <span className="toast-check">&#10003;</span>
+                    {toast.type === 'award' ? `${toast.amount} pts awarded` : `-${toast.amount} pts redeemed`}
+                    </div>
+            )}
 
             <div>
                 <h1>Employee Rewards Dashboard</h1>
