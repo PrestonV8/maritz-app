@@ -24,7 +24,7 @@ function App() {
 
     // Award points to an employee by calling the API
     function awardPoints(id) {
-        fetch(`https://localhost:7103/api/employees/${id}/award`, {
+        fetch(`/api/employees/${id}/award`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ amount: 10, reason: 'Great work' })
@@ -42,7 +42,7 @@ function App() {
     }
 
     function redeemPoints(id) {
-        fetch(`https://localhost:7103/api/employees/${id}/redeem`, {
+        fetch(`/api/employees/${id}/redeem`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ amount: 10 })
