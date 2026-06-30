@@ -99,6 +99,14 @@ function App() {
     if (loading) return <p>Loading employees...</p>
     if (error) return <p>Error: {error}</p>
 
+    const employeesCopy = [...employees]; // create a shallow copy of the employees array
+
+    // sort the employees by points in 
+    const sorted = employeesCopy.sort(function (a, b)
+    {
+        return b.points - a.points;
+    })
+
     const totalSelected = catalog.filter(item => selected.has(item.name)).reduce((sum, item) => sum + item.pts, 0)
 
     return (
