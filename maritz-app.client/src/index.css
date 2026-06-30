@@ -275,3 +275,51 @@ button {
         transform: translateY(0);
     }
 }
+
+@media (max-width: 768px) {
+
+    /* Stack table and catalog vertically */
+    .content-row {
+        flex-direction: column;
+    }
+
+    /* Catalog takes full width instead of fixed 160px */
+    .catalog-sidebar {
+        width: 100%;
+    }
+
+    /* Hide Department column on small screens */
+    .col-department {
+        display: none;
+    }
+
+    th.col-department {
+        display: none;
+    }
+
+    /* Tighten table padding */
+    .table-card td,
+    .table-card th {
+        padding: 10px 8px;
+    }
+
+    /* Shrink the page title */
+    .page-title {
+        font-size: 20px;
+    }
+
+    /* Catalog items side by side on mobile */
+    .catalog-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Toast full width at bottom instead of top right */
+    .toast {
+        top: auto;
+        bottom: 24px;
+        right: 16px;
+        left: 16px;
+        justify-content: center;
+    }
+}

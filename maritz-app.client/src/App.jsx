@@ -99,8 +99,6 @@ function App() {
     if (loading) return <p>Loading employees...</p>
     if (error) return <p>Error: {error}</p>
 
-    const sorted = [...employees].sort((a, b) => b.points - a.points)
-
     const totalSelected = catalog.filter(item => selected.has(item.name)).reduce((sum, item) => sum + item.pts, 0)
 
     return (
@@ -121,7 +119,7 @@ function App() {
                             <tr>
                                 <th>Rank</th>
                                 <th>Name</th>
-                                <th>Department</th>
+                                <th className="col-department">Department</th>
                                 <th>Points</th>
                                 <th>Actions</th>
                             </tr>
@@ -136,7 +134,7 @@ function App() {
                                         </span>
                                         {emp.name}
                                     </td>
-                                    <td>{emp.department}</td>
+                                    <td className="col-department">{emp.department}</td>
                                     <td className="col-points">{emp.points}</td>
                                     <td className="col-actions">
                                         <button
